@@ -1,10 +1,16 @@
 <script>
 export default {
-  name: "HelloWorld",
+    name: "AppSingleCard",
+    props: {
+        details: Object
+    }
 }
 </script>
 
-<template></template>
+<template>
+    {{ details.type }}
+    a
+</template>
 
 <style scoped lang="scss">
 @use '../styles/partials/variables.scss' as *;

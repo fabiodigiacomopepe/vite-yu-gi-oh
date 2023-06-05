@@ -1,15 +1,47 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { store } from './store.js';
+import axios from 'axios'
+import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
+import AppListCard from './components/AppListCard.vue'
+import AppSingleCard from './components/AppSingleCard.vue'
 
 export default {
   components: {
-    HelloWorld,
+    AppHeader,
+    AppMain,
+    AppListCard,
+    AppSingleCard
+  },
+  data() {
+    return {
+      store
+    }
+  },
+  methods: {
+    getCard() {
+      axios
+        .get(store.pathApi)
+        .then(
+          risultato => {
+            store.arrayCard = risultato.data;
+            console.log("Chiamata AXIOS effettuata correttamente");
+            console.log(store.arrayCard);
+          })
+        .catch(errore => {
+          console.log(errore);
+        })
+    }
+  },
+  created() {
+    this.getCard();
   }
 }
 </script>
 
 <template>
-  <HelloWorld />
+  <AppHeader />
+  <AppMain />
 </template>
 
 <style lang="scss">

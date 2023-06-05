@@ -1,5 +1,12 @@
+@use './partials/variables.scss' as *;
+@use './partials/mixins.scss' as *;
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+body {
+    background-color: #d48f38;
 }
