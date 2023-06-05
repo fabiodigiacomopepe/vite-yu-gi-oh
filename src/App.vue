@@ -5,13 +5,15 @@ import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 import AppListCard from './components/AppListCard.vue'
 import AppSingleCard from './components/AppSingleCard.vue'
+import AppLoader from './components/AppLoader.vue'
 
 export default {
   components: {
     AppHeader,
     AppMain,
     AppListCard,
-    AppSingleCard
+    AppSingleCard,
+    AppLoader
   },
   data() {
     return {
@@ -25,6 +27,7 @@ export default {
         .then(
           risultato => {
             store.arrayCard = risultato.data.data;
+            store.loading = false;
           })
         .catch(errore => {
           console.log(errore);
@@ -38,8 +41,9 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
-  <AppMain />
+  <AppLoader v-if="store.loading" />
+  <AppHeader v-if="store.loading === false" />
+  <AppMain v-if="store.loading === false" />
 </template>
 
 <style lang="scss">
