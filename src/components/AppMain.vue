@@ -1,10 +1,16 @@
 <script>
+import { store } from '../store';
 import AppListCard from './AppListCard.vue';
 
 export default {
     name: "AppHeader",
     components: {
         AppListCard,
+    },
+    data() {
+        return {
+            store
+        }
     }
 }
 </script>
@@ -19,7 +25,7 @@ export default {
         <div class="card_container">
             <div class="cards_found">
                 <h4>
-                    Found {{ }} cards
+                    Found {{ store.arrayCard.length }} cards
                 </h4>
             </div>
             <div>
@@ -52,11 +58,10 @@ main {
         background-color: white;
         margin: 30px auto 0;
         width: 80%;
-        height: 600px;
-        padding: 50px;
+        padding: 50px 50px 10px;
 
         .cards_found {
-            background-color: black;
+            background-color: #212529;
             color: white;
             width: 100%;
             display: flex;
