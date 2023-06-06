@@ -7,6 +7,7 @@ import AppListCard from './components/AppListCard.vue'
 import AppSingleCard from './components/AppSingleCard.vue'
 import AppLoader from './components/AppLoader.vue'
 import AppSearch from './components/AppSearch.vue'
+import AppCardCounter from './components/AppCardCounter.vue'
 
 
 export default {
@@ -16,7 +17,8 @@ export default {
     AppListCard,
     AppSingleCard,
     AppLoader,
-    AppSearch
+    AppSearch,
+    AppCardCounter
   },
   data() {
     return {
