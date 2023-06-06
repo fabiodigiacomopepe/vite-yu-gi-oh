@@ -6,6 +6,8 @@ import AppMain from './components/AppMain.vue'
 import AppListCard from './components/AppListCard.vue'
 import AppSingleCard from './components/AppSingleCard.vue'
 import AppLoader from './components/AppLoader.vue'
+import AppSearch from './components/AppSearch.vue'
+
 
 export default {
   components: {
@@ -13,7 +15,8 @@ export default {
     AppMain,
     AppListCard,
     AppSingleCard,
-    AppLoader
+    AppLoader,
+    AppSearch
   },
   data() {
     return {
@@ -22,28 +25,51 @@ export default {
   },
   methods: {
     getCard() {
+      let myUrl = store.pathApi;
+      if (store.searchInput !== "") {
+        myUrl += `&archetype=${store.searchInput}`
+      }
+
       axios
-        .get(store.pathApi)
+        .get(myUrl)
         .then(
           risultato => {
             store.arrayCard = risultato.data.data;
+            store.loading = false;
+            console.log("OK");
+          })
+        .catch(errore => {
+          console.log(errore);
+        })
+    },
+    getArchetipo() {
+      axios
+        .get(store.pathApiArchetipo)
+        .then(
+          risultatoArchetipo => {
+            risultatoArchetipo.data.forEach((el, index) => {
+              store.arrayArchetipo.push(risultatoArchetipo.data[index].archetype_name);
+            });
             store.loading = false;
           })
         .catch(errore => {
           console.log(errore);
         })
-    }
+    },
   },
   created() {
     this.getCard();
+    this.getArchetipo();
   }
 }
 </script>
 
 <template>
   <AppLoader v-if="store.loading" />
-  <AppHeader v-if="store.loading === false" />
-  <AppMain v-if="store.loading === false" />
+  <div v-else>
+    <AppHeader />
+    <AppMain @search_emitOnApp="getCard" />
+  </div>
 </template>
 
 <style lang="scss">

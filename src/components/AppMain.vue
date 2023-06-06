@@ -1,11 +1,13 @@
 <script>
 import { store } from '../store';
 import AppListCard from './AppListCard.vue';
+import AppSearch from './AppSearch.vue';
 
 export default {
     name: "AppHeader",
     components: {
         AppListCard,
+        AppSearch
     },
     data() {
         return {
@@ -17,11 +19,7 @@ export default {
 
 <template>
     <main>
-        <form action="#">
-            <select name="type" id="tipologia">
-                <option value="Alien">Alien</option>
-            </select>
-        </form>
+        <AppSearch @search_emitOnMain="$emit('search_emitOnApp')" />
         <div class="card_container">
             <div class="cards_found">
                 <h4>
@@ -40,20 +38,6 @@ export default {
 @use '../styles/partials/mixins.scss' as *;
 
 main {
-
-    form {
-        width: 80%;
-        margin: 30px auto 0;
-        position: relative;
-        left: 10px;
-
-        select {
-            width: 100px;
-            padding: 5px;
-            border-radius: 5px;
-        }
-    }
-
     .card_container {
         background-color: white;
         margin: 30px auto 0;
