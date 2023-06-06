@@ -29,7 +29,6 @@ export default {
     width: calc(100% / 5 - 16px);
     background-color: $colore_primario;
 
-
     .name,
     .type {
         width: 80%;

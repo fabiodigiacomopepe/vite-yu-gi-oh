@@ -49,8 +49,8 @@ export default {
         .get(store.pathApiArchetipo)
         .then(
           risultatoArchetipo => {
-            risultatoArchetipo.data.forEach((el, index) => {
-              store.arrayArchetipo.push(risultatoArchetipo.data[index].archetype_name);
+            risultatoArchetipo.data.forEach(el => {
+              store.arrayArchetipo.push(el.archetype_name);
             });
             store.loading = false;
           })
